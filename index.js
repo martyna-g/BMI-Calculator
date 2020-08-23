@@ -7,6 +7,7 @@ const calcBtn = document.getElementById("calculate");
 
 let metric = true;
 let result = 0;
+let weightCategory = "";
 
 metricBtn.addEventListener("click", changeToMetric);
 imperialBtn.addEventListener("click", changeToImperial);
@@ -16,16 +17,16 @@ function changeToMetric() {
   weightInput.placeholder = "KG";
   heightInput.placeholder = "CM";
   metric = true;
-  weightInput.value = '';
-  heightInput.value = '';
+  weightInput.value = "";
+  heightInput.value = "";
 }
 
 function changeToImperial() {
   weightInput.placeholder = "LB";
   heightInput.placeholder = "IN";
   metric = false;
-  weightInput.value = '';
-  heightInput.value = '';
+  weightInput.value = "";
+  heightInput.value = "";
 }
 
 function calculate() {
@@ -36,4 +37,29 @@ function calculate() {
   } else {
     result = (703 * (weight / (height * height))).toFixed(2);
   }
+  printResult();
+}
+
+function printResult() {
+  let resultDiv = document.getElementsByClassName("result")[0];
+  if (result < 18.5) {
+    weightCategory = "underweight";
+    resultDiv.style.backgroundColor = "rgba(31, 150, 167, 0.6)";
+  } else if (result < 25) {
+    weightCategory = "a healthy weight";
+    resultDiv.style.backgroundColor = "rgba(52, 206, 52, 0.6)";
+  } else if (result < 30) {
+    weightCategory = "overweight";
+    resultDiv.style.backgroundColor = "rgba(235, 235, 84, 0.6)";
+  } else {
+    weightCategory = "obese";
+    resultDiv.style.backgroundColor = "rgba(241, 22, 66, 0.6)";
+  }
+  resultDiv.childNodes[1].innerHTML = "BMI " + result;
+  resultDiv.childNodes[3].innerHTML =
+    "Your result suggests that you are " +
+    "<br />" +
+    "<span style='font-size: 2rem;'>" +
+    weightCategory +
+    "</span>";
 }
