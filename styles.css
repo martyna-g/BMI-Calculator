@@ -1,5 +1,5 @@
 html {
-    font-family: 'Varela Round', sans-serif;
+    font-family: 'Encode Sans Semi Expanded', sans-serif;
     font-size: 19px;
     box-sizing: border-box;
     background: url(bckgrd.jpg) no-repeat center fixed;
@@ -24,6 +24,10 @@ html {
     bottom: 0;
     right: 0;
     z-index: -1;
+    box-shadow: 10px 10px 8px black;
+}
+.header {
+    font-family: 'Forum', cursive;
 }
 .calculator {
     width: 100%;
@@ -69,12 +73,14 @@ button {
     border-radius: 0.3rem;
     outline: none;
     cursor: pointer;
+    font-family: inherit;
 }
 #calculate:hover {
     background-color: rgb(45, 167, 238);
 }
 .result {
-    height: 300px;
+    height: 280px;
+    font-size: 1.5rem;
 }
 .categorization div {
     max-width: 100%;
@@ -112,17 +118,29 @@ color: rgb(255, 57, 9);
     color: rgb(192, 29, 88)
 
 }
+.clearfix {
+    display: block;
+    content: '';
+    clear: both;
+}
 
-@media (min-width: 800px) {
+@media (min-width: 992px) {
     .categorization div {
         box-sizing: border-box;
         width: 16.66%;
         float: left;
         border: 1px solid black;
     }
-    .clearfix {
-        display: block;
-        content: '';
-        clear: both;
+    .result {
+        padding-top: 70px;
+    }
+}
+@media (min-width: 480px) and (max-width: 991px) {
+    .categorization div {
+        width: 50%;
+        float: left;
+    }
+    .result {
+        padding-top: 40px ;
     }
 }
