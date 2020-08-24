@@ -37,11 +37,17 @@ function calculate() {
   } else {
     result = (703 * (weight / (height * height))).toFixed(2);
   }
-  printResult();
+  printResult(weight, height);
 }
 
-function printResult() {
+function printResult(w, h) {
   let resultDiv = document.getElementsByClassName("result")[0];
+  if (isNaN(result) || w <= 0 || h <= 0) {
+    resultDiv.childNodes[1].innerHTML = "Please provide correct informations";
+    resultDiv.childNodes[3].innerHTML = "Weight and height must be greater than 0";
+    resultDiv.style.backgroundColor = "transparent";
+    return;
+  }
   if (result < 18.5) {
     weightCategory = "underweight";
     resultDiv.style.backgroundColor = "rgba(31, 150, 167, 0.6)";
